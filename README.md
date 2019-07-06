@@ -182,6 +182,46 @@
 </td>
 </tr>
 
+<tr class="altColor">
+<td class="colFirst"><a href="http://192.168.1.36:10080/ezdev-cloud/ezdev-cloud-gateway" >ezdev-cloud-gateway</a></td>
+<td class="colLast">
+<div class="block">
+ 服务API网关,提供数据权限过滤等功能</div>
+</td>
+</tr>
+
+<tr class="altColor">
+<td class="colFirst"><a href="http://192.168.1.36:10080/ezdev-cloud/ezdev-cloud-bus" >ezdev-cloud-bus</a></td>
+<td class="colLast">
+<div class="block">
+ 基于消息引擎实现事件发布与消费功能，主要用于配置，缓存同步更新通知</div>
+</td>
+</tr>
+
+<tr class="altColor">
+<td class="colFirst"><a href="http://192.168.1.36:10080/ezdev-cloud/ezdev-cloud-config-support" >ezdev-cloud-config-support</a></td>
+<td class="colLast">
+<div class="block">
+ 配置中心支持，目前基于Apollo实现</div>
+</td>
+</tr>
+
+<tr class="altColor">
+<td class="colFirst"><a href="http://192.168.1.36:10080/ezdev-cloud/ezdev-cloud-service-registry" >ezdev-cloud-service-registry</a></td>
+<td class="colLast">
+<div class="block">
+ 服务注册中心</div>
+</td>
+</tr>
+
+<tr class="altColor">
+<td class="colFirst"><a href="http://192.168.1.36:10080/ezdev-cloud/ezdev-cloud-native-adapter.git" >ezdev-cloud-native-adapter</a></td>
+<td class="colLast">
+<div class="block">
+ 本地方法调用</div>
+</td>
+</tr>
+
 </tbody>
 </table>
 

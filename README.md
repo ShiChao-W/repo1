@@ -1,4 +1,66 @@
 ## 复用组件清单 ##
+### 前端模块 ###
+<table class="typeSummary" border="0" cellpadding="3" cellspacing="0">
+    <tr>
+        <th class="colFirst" scope="col">名称</th>
+        <th class="colLast" scope="col">描述</th>
+    </tr>
+    <tr>
+        <td class="colFirst" scope="col">ezdev-pcview</th>
+        <td class="colLast" scope="col">基础框架组件</th>
+    </tr>
+   <tr>
+            <td class="colFirst" scope="col">ezdev-layer</th>
+            <td class="colLast" scope="col">基础样式 组件</th>
+   </tr>
+    <tr>
+               <td class="colFirst" scope="col">cs-webcomp</th>
+               <td class="colLast" scope="col">模块内自定义组件</th>
+      </tr>
+</table>
+### 前端组件 ###
+<table class="typeSummary" border="0" cellpadding="3" cellspacing="0">
+    <tr>
+        <th class="colFirst" scope="col">组件名称</th>
+        <th class="colLast" scope="col">组价描述</th>
+    </tr>
+    <tr>
+        <td class="colFirst" scope="col">时间控件（e-datetimepicker）</th>
+        <td class="colLast" scope="col">ezdev-layer下src/common/components/date</th>
+    </tr>
+   <tr>
+            <td class="colFirst" scope="col">文件上传组件（e-attach，e-uploader）</th>
+            <td class="colLast" scope="col">zdev-pcview下src/components/attach</th>
+   </tr>
+    <tr>
+            <td class="colFirst" scope="col">复选框组件（e-checkbox）</th>
+            <td class="colLast" scope="col">zdev-pcview下src/components/attach</th>
+    </tr>
+     <tr>
+                <td class="colFirst" scope="col">loading效果</th>
+                <td class="colLast" scope="col">zdev-pcview下src/components/load</th>
+     </tr>
+    <tr>
+               <td class="colFirst" scope="col">弹窗组件（e-popu）</th>
+               <td class="colLast" scope="col">zdev-pcview下src/components/popu</th>
+    </tr>
+    <tr>
+                   <td class="colFirst" scope="col">单选按钮组件（e-radio）</th>
+                   <td class="colLast" scope="col">zdev-pcview下src/components/radio</th>
+    </tr>
+     <tr>
+                  <td class="colFirst" scope="col">下拉框组件（e-select）</th>
+                  <td class="colLast" scope="col">zdev-pcview下src/components/select</th>
+     </tr>
+      <tr>
+                  <td class="colFirst" scope="col">table组件</th>
+                  <td class="colLast" scope="col">ezdev-layer</th>
+      </tr>
+      <tr>
+                   <td class="colFirst" scope="col">treelist组件</th>
+                    <td class="colLast" scope="col">zdev-pcview下src/components/treelist</th>
+      </tr>
+</table>
 
 ### 前端复用组件 ###
 <table class="typeSummary" border="0" cellpadding="3" cellspacing="0">

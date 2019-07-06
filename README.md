@@ -56,11 +56,10 @@
                   <td class="colFirst" scope="col">table组件</th>
                   <td class="colLast" scope="col">ezdev-layer</th>
       </tr>
-      <tr>
-                   <td class="colFirst" scope="col">treelist组件</th>
-                    <td class="colLast" scope="col">zdev-pcview下src/components/treelist</th>
-      </tr>
+        
 </table>
+组件demo地址
+济南地址：<a href="http://192.168.1.75/#/example/common/demos/index">组件demo</a>  
 
 ### 前端复用组件 ###
 <table class="typeSummary" border="0" cellpadding="3" cellspacing="0">

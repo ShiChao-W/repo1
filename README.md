@@ -61,62 +61,6 @@
 组件demo地址
 济南地址：<a href="http://192.168.1.75/#/example/common/demos/index">组件demo</a>  
 
-### 前端复用组件 ###
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0">
-<tbody><tr>
-<th class="colFirst" scope="col">接口</th>
-<th class="colLast" scope="col">说明</th>
-</tr>
-</tbody><tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/BizSysService.html" >BizSysService</a></td>
-<td class="colLast">
-<div class="block">应用业务接口
- 定义应用的增删改查等操作</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/DataScopeService.html" >DataScopeService</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/DictionaryService.html" >DictionaryService</a></td>
-<td class="colLast">
-<div class="block">字典业务接口
- 定义字典的增删改查等操作</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/OrganizationService.html" >OrganizationService</a></td>
-<td class="colLast">
-<div class="block">组织结构业务接口
- 定义组织结构的增删改查等操作</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/ResourceService.html" >ResourceService</a></td>
-<td class="colLast">
-<div class="block">资源业务接口
- 定义资源的增删改查等操作</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/RoleService.html" >RoleService</a></td>
-<td class="colLast">
-<div class="block">角色业务接口
- 定义角色的增删改查等操作</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../com/chrtc/system/service/UserService.html" >UserService</a></td>
-<td class="colLast">
-<div class="block">用户业务接口
- 定义用户的增删改查等操作</div>
-</td>
-</tr>
-</tbody>
-</table>
-
 ### 后端复用组件 ###
 <table class="typeSummary" border="0" cellpadding="3" cellspacing="0">
 <tbody><tr>

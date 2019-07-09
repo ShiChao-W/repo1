@@ -1,0 +1,101 @@
+* *JDK*:jdk64位，版本8.0及以上
+* *Maven*:maven3.5.3及以上版本,如果需要手动发布jar包到私服还需要在maven的配置文件中配置如下信息：
+
+.settings.xml
+[source,xml]
+----
+  <servers>
+    <!-- server
+     | Specifies the authentication information to use when connecting to a particular server, identified by
+     | a unique name within the system (referred to by the 'id' attribute below).
+     |
+     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+     |       used together.
+     |
+    <server>
+      <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
+    </server>
+    -->
+
+    <!-- Another sample, using keys to authenticate.
+    <server>
+      <id>siteServer</id>
+      <privateKey>/path/to/private/key</privateKey>
+      <passphrase>optional; leave empty if not used.</passphrase>
+    </server>
+    -->
+	<server>
+       <id>nexus-releases</id>
+       <username>deployment</username>
+       <password>chrhc</password>
+    </server>
+
+    <server>
+       <id>maven-3rd</id>
+       <username>deployment</username>
+       <password>chrhc</password>
+    </server>
+    
+    <server>
+       <id>nexus-snapshots</id>
+       <username>deployment</username>
+       <password>chrhc</password>
+    </server>
+    
+    <server>  
+       <id>tomcat</id>
+       <username>tomcat</username>  
+       <password>tomcat</password>  
+    </server>
+  </servers>
+----
+
+* *Nodejs*:请下载官方最新LTS版本，并执行安装，并做如下操作及配置
+
+安装nrm
+[source]
+ npm install -g nrm  
+ 
+设置registry
+[source]
+  nrm add npm-release http://192.168.1.70:8081/repository/npm-release/
+  nrm add npm-public  http://192.168.1.70:8081/repository/npm-public/
+  nrm add npm http://registry.npmjs.org
+  nrm add taobao https://registry.npm.taobao.org
+  
+npm远程下载模块
+
+切换registry 到 npm-public进行模块下载
+
+[source]
+nrm use npm-public
+
+测试是否可以下载模块
+
+[source]
+$ npm --loglevel info install grunt 
+...
+npm http fetch GET http://192.168.1.70:8081/repository/npmjs-org/grunt/-/grunt-0.4.5.tgz
+npm http fetch 200 http://192.168.1.70:8081/repository/npmjs-org/grunt/-/grunt-0.4.5.tgz
+...
+npm http fetch GET http://192.168.1.70:8081/repository/npm-all/underscore/-/underscore-1.7.0.tgz
+npm http fetch 200 http://192.168.1.70:8081/repository/npm-all/underscore/-/underscore-1.7.0.tgz   
+
+
+npm发布模块(如果需要发布)，切换registry
+[source]
+nrm use npm-release
+
+发布模块时让输入账号信息
+[source]
+账号：admin   
+密码：admin123    
+邮箱：admin@example.org    
+
+在实际开发项目中每个项目的xxx-pcview/bin下都有发布脚本
+
+image::{imagesdir}/npm_publish.png[]
+
+* *JDK*:jdk64位，版本8.0及以上

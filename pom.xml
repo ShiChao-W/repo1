@@ -4,16 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-gateway</artifactId>
-		<version>2.0.1.RELEASE</version>
+		<artifactId>spring-cloud-build</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/>
 	</parent>
-	<artifactId>spring-cloud-gateway-docs</artifactId>
+	<artifactId>guide-doc</artifactId>
 	<packaging>pom</packaging>
-	<name>Spring Cloud Gateway Docs</name>
-	<description>Spring Cloud Docs</description>
+	<name>Guide Docs</name>
+	<description>Guide Docs</description>
 	<properties>
-		<docs.main>spring-cloud-gateway</docs.main>
-		<main.basedir>${basedir}/..</main.basedir>
+		<docs.main>ezdev-quick-start-guide</docs.main>
 		<docs.whitelisted.branches>1.0.x</docs.whitelisted.branches>
 	</properties>
 	<build>

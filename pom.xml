@@ -15,7 +15,7 @@
     <name>Guide Docs</name>
     <description>Guide Docs</description>
     <properties>
-        <docs.main>ezdev-quick-start-guide</docs.main>
+        <docs.main>index</docs.main>
         <docs.whitelisted.branches>1.0.x</docs.whitelisted.branches>
     </properties>
     <build>

@@ -18,20 +18,351 @@
         <docs.main>index</docs.main>
         <docs.whitelisted.branches>1.0.x</docs.whitelisted.branches>
     </properties>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
         <profile>
-            <id>docs</id>
+            <id>ezdev-docs</id>
             <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-dependency-plugin</artifactId>
+                            <version>3.0.0</version>
+                            <executions>
+                                <execution>
+                                    <id>unpack-docs</id>
+                                    <phase>generate-resources</phase>
+                                    <goals>
+                                        <goal>unpack</goal>
+                                    </goals>
+                                    <configuration>
+                                        <artifactItems>
+                                            <artifactItem>
+                                                <groupId>org.springframework.cloud</groupId>
+                                                <artifactId>spring-cloud-build-docs</artifactId>
+                                                <version>${spring-cloud-build.version}</version>
+                                                <classifier>sources</classifier>
+                                                <type>jar</type>
+                                                <overWrite>false</overWrite>
+                                                <outputDirectory>${docs.resources.dir}</outputDirectory>
+                                            </artifactItem>
+                                        </artifactItems>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctor-maven-plugin</artifactId>
+                            <version>1.5.5</version>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>io.spring.asciidoctor</groupId>
+                                    <artifactId>spring-asciidoctor-extensions</artifactId>
+                                    <version>0.1.0.RELEASE</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>generate-docbook</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                        <goal>process-asciidoc</goal>
+                                    </goals>
+                                    <configuration>
+                                        <sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+                                        <backend>docbook5</backend>
+                                        <doctype>book</doctype>
+                                        <attributes>
+                                            <docinfo>true</docinfo>
+                                            <spring-boot-docs-version>${spring-boot.version}</spring-boot-docs-version>
+                                            <spring-cloud-version>${project.version}</spring-cloud-version>
+                                            <allow-uri-read>true</allow-uri-read>
+                                            <safe-mode>unsafe</safe-mode>
+                                        </attributes>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>generate-index</id>
+                                    <phase>process-resources</phase>
+                                    <goals>
+                                        <goal>process-asciidoc</goal>
+                                    </goals>
+                                    <configuration>
+                                        <sourceDocumentName>${docs.main}.adoc</sourceDocumentName>
+                                        <sourceDirectory>${basedir}/target/generated-index/</sourceDirectory>
+                                        <backend>html</backend>
+                                        <doctype>article</doctype>
+                                        <attributes>
+                                            <docinfo>true</docinfo>
+                                            <spring-cloud-version>${project.version}</spring-cloud-version>
+                                            <allow-uri-read>true</allow-uri-read>
+                                            <safe-mode>unsafe</safe-mode>
+                                            <source-highlighter>prettify</source-highlighter>
+                                            <docs-main>${docs.main}</docs-main>
+                                        </attributes>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.agilejava.docbkx</groupId>
+                            <artifactId>docbkx-maven-plugin</artifactId>
+                            <version>2.0.15</version>
+                            <configuration>
+                                <sourceDirectory>${basedir}/target/generated-docs</sourceDirectory>
+                                <includes>${docs.main}.xml</includes>
+                                <xincludeSupported>true</xincludeSupported>
+                                <chunkedOutput>false</chunkedOutput>
+                                <foCustomization>${docs.resources.dir}/docbook/xsl/pdf.xsl</foCustomization>
+                                <useExtensions>1</useExtensions>
+                                <highlightSource>1</highlightSource>
+                                <highlightXslthlConfig>${docs.resources.dir}/docbook/xsl/xslthl-config.xml
+                                </highlightXslthlConfig>
+                            </configuration>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>net.sf.xslthl</groupId>
+                                    <artifactId>xslthl</artifactId>
+                                    <version>2.1.0</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>net.sf.docbook</groupId>
+                                    <artifactId>docbook-xml</artifactId>
+                                    <version>5.0-all</version>
+                                    <classifier>resources</classifier>
+                                    <type>zip</type>
+                                    <scope>runtime</scope>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>html-single</id>
+                                    <goals>
+                                        <goal>generate-html</goal>
+                                    </goals>
+                                    <phase>prepare-package</phase>
+                                    <configuration>
+                                        <htmlCustomization>${docs.resources.dir}/docbook/xsl/html-singlepage.xsl
+                                        </htmlCustomization>
+                                        <targetDirectory>${basedir}/target/docbook/htmlsingle</targetDirectory>
+                                        <postProcess>
+                                            <copy todir="${basedir}/target/contents/reference/htmlsingle">
+                                                <fileset dir="${basedir}/target/docbook/htmlsingle">
+                                                    <include name="**/*.html"/>
+                                                </fileset>
+                                            </copy>
+                                            <copy todir="${basedir}/target/contents/reference/htmlsingle/images">
+                                                <fileset dir="${basedir}/src/main/asciidoc/images"/>
+                                            </copy>
+                                            <copy todir="${basedir}/target/contents/reference/htmlsingle/css">
+                                                <fileset dir="${basedir}/src/main/asciidoc/css"/>
+                                            </copy>
+                                        </postProcess>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>html</id>
+                                    <goals>
+                                        <goal>generate-html</goal>
+                                    </goals>
+                                    <phase>prepare-package</phase>
+                                    <configuration>
+                                        <htmlCustomization>${docs.resources.dir}/docbook/xsl/html-multipage.xsl
+                                        </htmlCustomization>
+                                        <targetDirectory>${basedir}/target/docbook/html</targetDirectory>
+                                        <!-- By default `-` prefix is added to files and gh-pages don't render these files -->
+                                        <chunkedFilenamePrefix>multi_</chunkedFilenamePrefix>
+                                        <chunkedOutput>true</chunkedOutput>
+                                        <postProcess>
+                                            <copy todir="${basedir}/target/contents/reference/html">
+                                                <fileset dir="${basedir}/target/docbook/html">
+                                                    <include name="**/*.html"/>
+                                                </fileset>
+                                            </copy>
+                                            <copy todir="${basedir}/target/contents/reference/html/images">
+                                                <fileset dir="${basedir}/src/main/asciidoc/images"/>
+                                            </copy>
+                                            <copy todir="${basedir}/target/contents/reference/html/css">
+                                                <fileset dir="${basedir}/src/main/asciidoc/css"/>
+                                            </copy>
+                                        </postProcess>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>build-helper-maven-plugin</artifactId>
+                            <version>1.12</version>
+                            <inherited>false</inherited>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-antrun-plugin</artifactId>
+                            <dependencies>
+                                <dependency>
+                                    <groupId>ant-contrib</groupId>
+                                    <artifactId>ant-contrib</artifactId>
+                                    <version>1.0b3</version>
+                                    <exclusions>
+                                        <exclusion>
+                                            <groupId>ant</groupId>
+                                            <artifactId>ant</artifactId>
+                                        </exclusion>
+                                    </exclusions>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.apache.ant</groupId>
+                                    <artifactId>ant-nodeps</artifactId>
+                                    <version>1.8.1</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.tigris.antelope</groupId>
+                                    <artifactId>antelopetasks</artifactId>
+                                    <version>3.2.10</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.jruby</groupId>
+                                    <artifactId>jruby-complete</artifactId>
+                                    <version>1.7.17</version>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.asciidoctor</groupId>
+                                    <artifactId>asciidoctorj</artifactId>
+                                    <version>1.5.2</version>
+                                </dependency>
+                            </dependencies>
+                            <executions>
+                                <execution>
+                                    <id>readme</id>
+                                    <phase>process-resources</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <target>
+                                            <java classname="org.jruby.Main" failonerror="yes">
+                                                <arg value="${docs.resources.dir}/ruby/generate_readme.sh"/>
+                                                <arg value="-o"/>
+                                                <arg value="${main.basedir}/README.adoc"/>
+                                            </java>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>generate-documentation-index</id>
+                                    <phase>generate-resources</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <target>
+                                            <echo file="${basedir}/target/generated-index/${docs.main}.adoc">
+                                                - link:single/{docs-main}.html[Single HTML]
+                                                - link:multi/multi_{docs-main}.html[Multi HTML]
+                                            </echo>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>copy-generated-html</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <target>
+                                            <copy todir="${basedir}/target/generated-docs/single">
+                                                <fileset dir="${basedir}/target/contents/reference/htmlsingle"/>
+                                            </copy>
+                                            <copy todir="${basedir}/target/generated-docs/multi">
+                                                <fileset dir="${basedir}/target/contents/reference/html"/>
+                                            </copy>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>assert-no-unresolved-links</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <target>
+                                            <fileset id="unresolved.file" dir="${basedir}/target/contents/reference/"
+                                                     includes="**/*.html">
+                                                <contains text="Unresolved"/>
+                                            </fileset>
+                                            <fail message="[Unresolved] Found...failing">
+                                                <condition>
+                                                    <resourcecount when="greater" count="0" refid="unresolved.file"/>
+                                                </condition>
+                                            </fail>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>setup-maven-properties</id>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                        <exportAntProperties>true</exportAntProperties>
+                                        <target>
+                                            <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+                                            <taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"/>
+                                            <var name="version-type" value="${project.version}"/>
+                                            <propertyregex property="version-type"
+                                                           override="true" input="${version-type}" regexp=".*\.(.*)"
+                                                           replace="\1"/>
+                                            <propertyregex property="version-type"
+                                                           override="true" input="${version-type}" regexp="(M)\d+"
+                                                           replace="MILESTONE"/>
+                                            <propertyregex property="version-type"
+                                                           override="true" input="${version-type}" regexp="(RC)\d+"
+                                                           replace="MILESTONE"/>
+                                            <propertyregex property="version-type"
+                                                           override="true" input="${version-type}" regexp="BUILD-(.*)"
+                                                           replace="SNAPSHOT"/>
+                                            <stringutil string="${version-type}" property="spring-cloud-repo">
+                                                <lowercase/>
+                                            </stringutil>
+                                            <var name="github-tag" value="v${project.version}"/>
+                                            <propertyregex property="github-tag" override="true"
+                                                           input="${github-tag}" regexp=".*SNAPSHOT" replace="master"/>
+                                        </target>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jfrog.buildinfo</groupId>
+                            <artifactId>artifactory-maven-plugin</artifactId>
+                            <version>2.2.1</version>
+                            <executions>
+                                <execution>
+                                    <id>build-info</id>
+                                    <goals>
+                                        <goal>publish</goal>
+                                    </goals>
+                                    <configuration>
+                                        <deployProperties>
+                                            <zip.deployed>true</zip.deployed>
+                                            <zip.type>docs</zip.type>
+                                        </deployProperties>
+                                        <publisher>
+                                            <contextUrl>https://repo.spring.io</contextUrl>
+                                            <repoKey>libs-release-local</repoKey>
+                                            <snapshotRepoKey>libs-snapshots-local</snapshotRepoKey>
+                                        </publisher>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>

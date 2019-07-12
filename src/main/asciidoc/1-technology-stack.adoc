@@ -1,18 +1,20 @@
 * *Spring Boot*: https://spring.io/projects/spring-boot[SpringBoot]是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域(rapid application development)成为领导者。
 
 
-* *Spring Cloud*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *Spring Cloud*: https://springcloud.cc/[SringCloud]是一系列框架的有序集合。它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。Spring Cloud并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。
 
-* *MyBatis*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *MyBatis*: 
+https://blog.mybatis.org/[MyBatis]是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。MyBatis可以使用简单的XML或注解来配置和映射原生信息，将接口和Java的POJOs(Plain Ordinary Java Object,普通的Java对象)映射成数据库中的记录。
 
-* *Redis*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *Redis*: https://redis.io/[Redis]是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。
 
-* *MySQL*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *MySQL*: 
+https://www.mysql.com/[MySQL]是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于Oracle旗下产品。MYSQL是最流行的关系数据库系统之一，在WEB应用方面，MYSQL是最好的RDBMS（Relational Datebase Management System，关系数据库管理系统)应用软件之一。
 
-* *ELK*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *ELK*: https://www.elastic.co/cn/products/elasticsearch[ELK]是三个开源软件的缩写，分别表示：Elasticsearch,Logstash,Kibana,它们都是开源软件。新增了一个FileBeat，它是一个轻量级的日志收集处理工具(Agent)，Filebeat占用资源少，适合于在各个服务器上搜集日志后传输给Logstash。
 
-* *ES6*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *ES6*: http://coenraets.org/present/es6/#0[ES6]（全称ECMAScript 6.0）是JavaScript语言的下一代标准，已经在2015年6月正式发布了。它的目标，是使得JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言。
 
-* *Arttemple*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *Arttemple*: https://www.npmjs.com/package/art-template[Arttemple]是一个简约、超快的模板引擎。它采用作用域预声明的技术来优化模板渲染速度，从而获得接近JavaScript极限的运行性能，并且同时支持 NodeJS 和浏览器。在线速度测试。
 
-* *Jquery*: Route the basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates and a collection of filters. A route is matched if aggregate predicate is true.
+* *Jquery*: https://jquery.com/[Jquery]是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库(或JavaScript框架)。jQuery设计的宗旨是"write Less，Do More"，即倡导写更少的代码，做更多的事情。它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互
